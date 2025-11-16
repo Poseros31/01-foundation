@@ -1,16 +1,23 @@
 ---
+import MainLayout from "../layouts/MainLayout.astro";
 
+// Server only
+const name = "Bryan Jose Soto Alvarez";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Home Page">
+  <main>
+    <h1>{name}</h1>
+
+    <p>Momento actual: {new Date().toLocaleTimeString()}</p>
+    <p id="current-time">Momento actual real:</p>
+  </main>
+
+  <script>
+    // Client Only
+    const currentTime: string = new Date().toLocaleTimeString();
+
+    const currentTimeElement = document.getElementById("current-time");
+    currentTimeElement?.append(currentTime);
+  </script>
+</MainLayout>
